@@ -5,11 +5,15 @@ test('First Playwright Test', async ({ page }) => {
   // get the title of the page
   const title = await page.title();
   console.log(`Title of the page: ${title}`); // Title of the page: Practice Page
-  // Add an assertion
-  await expect(page).toHaveSelector(
-    'LoginPage Practise | Rahul Shetty Academy'
-  );
-  await page.locator('#username').fill('rahulshettyacademy');
+  await page.locator('#username').fill('rahulshetty');
   await page.locator("[type='password']").fill('learning');
-  await page.locator('signInBtn').click();
+  await page.locator('#signInBtn').click();
+  const unsuccessfulLoginText = await page
+    .locator("[style*='block']")
+    .textContent();
+  console.log(unsuccessfulLoginText);
+  // Add an assertion to check the title of the page
+  expect(title).toContain('LoginPage Practise | Rahul Shetty Academy');
+  // Add an assertion to check the text of the unsuccessful login message
+  expect(unsuccessfulLoginText).toContain('Incorrect username/password');
 });
