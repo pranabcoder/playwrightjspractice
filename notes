@@ -1,0 +1,2 @@
+1. How to run a single testcase in a test file using playwright
+Answer - npx playwright test -g "Test case name"
