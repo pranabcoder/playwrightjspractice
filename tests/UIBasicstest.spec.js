@@ -43,3 +43,63 @@ test('Example - Find all texts from multiple elements', async ({ page }) => {
   const allTexts = await cardTitlesPath.allTextContents();
   console.log(allTexts);
 });
+test('Example - Check static dropdowns', async ({ page }) => {
+  const usernamePath = page.locator('#username');
+  const passwordPath = page.locator("[type='password']");
+  const dropdownPath = page.locator('select.form-control');
+  const loginButtonPath = page.locator('#signInBtn');
+  const cardTitlesPath = page.locator('.card-body a');
+  await page.goto('https://rahulshettyacademy.com/loginpagePractise/');
+  // get the title of the page
+  await usernamePath.fill('rahulshettyacademy');
+  await passwordPath.fill('learning');
+  // Select value from dropdown
+  await dropdownPath.selectOption('Consultant');
+  await loginButtonPath.click();
+  console.log(await cardTitlesPath.first().textContent());
+  // Find all texts from multiple elements
+  const allTexts = await cardTitlesPath.allTextContents();
+  console.log(allTexts);
+});
+test('Example - Check radio buttons', async ({ page }) => {
+  const usernamePath = page.locator('#username');
+  const passwordPath = page.locator("[type='password']");
+  const radioButtonsPath = page.locator('.radiotextsty');
+  const loginButtonPath = page.locator('#signInBtn');
+  const cardTitlesPath = page.locator('.card-body a');
+  await page.goto('https://rahulshettyacademy.com/loginpagePractise/');
+  // get the title of the page
+  await usernamePath.fill('rahulshettyacademy');
+  await passwordPath.fill('learning');
+  await page.pause();
+  // Select value from radio button
+  // Way to log if radio button is selected or not
+  console.log(await radioButtonsPath.first().isChecked());
+  await expect(radioButtonsPath.first()).toBeChecked();
+  await loginButtonPath.click();
+  console.log(await cardTitlesPath.first().textContent());
+  // Find all texts from multiple elements
+  const allTexts = await cardTitlesPath.allTextContents();
+  console.log(allTexts);
+});
+test('Example - Check a link is blinking or not', async ({ page }) => {
+  const usernamePath = page.locator('#username');
+  const passwordPath = page.locator("[type='password']");
+  const radioButtonsPath = page.locator('.radiotextsty');
+  const loginButtonPath = page.locator('#signInBtn');
+  const cardTitlesPath = page.locator('.card-body a');
+  const blinkingLinkPath = page.locator('.blinkingText');
+  await page.goto('https://rahulshettyacademy.com/loginpagePractise/');
+  await page.pause();
+  // check the link is blinking or not
+  await expect(blinkingLinkPath).toHaveAttribute('class', 'blinkingText');
+  await usernamePath.fill('rahulshettyacademy');
+  await passwordPath.fill('learning');
+  // Select value from radio button
+  console.log(await radioButtonsPath.first().isChecked());
+  await loginButtonPath.click();
+  console.log(await cardTitlesPath.first().textContent());
+  // Find all texts from multiple elements
+  const allTexts = await cardTitlesPath.allTextContents();
+  console.log(allTexts);
+});
