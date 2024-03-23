@@ -20,3 +20,25 @@ test('Example - ClientApp First Test', async ({ page }) => {
   const allTexts = await cardTitlePath.allTextContents();
   console.log(allTexts);
 });
+test('Example - ClientApp Second Test', async ({ page }) => {
+  const emailPath = page.locator('#userEmail');
+  const passwordPath = page.locator('#userPassword');
+  const loginButtonPath = page.locator("[value='Login']");
+  const productName = 'ADIDAS ORIGINAL';
+  const productsPath = page.locator('.card-body');
+  await page.goto('https://rahulshettyacademy.com/client/');
+  await emailPath.fill('anshika@gmail.com');
+  await passwordPath.fill('Iamking@000');
+  await loginButtonPath.click();
+  await productsPath.first().waitFor('page');
+  const count = await productsPath.count();
+  console.log(count);
+  for (let i = 0; i < count; i++) {
+    const cardTitlePath = productsPath.locator('b');
+    const cardText = await cardTitlePath.nth(i).textContent();
+    if (cardText.includes(productName)) {
+      await productsPath.nth(i).locator('text = Add To Cart').click();
+      break;
+    }
+  }
+});
