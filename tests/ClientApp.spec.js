@@ -82,5 +82,7 @@ test('Example - ClientApp Second Test', async ({ page }) => {
       break;
     }
   }
+  const orderIdDetails = await page.locator('.col-text').textContent();
+  expect(orderId.includes(orderIdDetails)).toBeTruthy();
   await page.waitForTimeout(5000);
 });
