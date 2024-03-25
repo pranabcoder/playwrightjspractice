@@ -1,17 +1,20 @@
 class LoginPage {
   constructor(page) {
     this.page = page;
-    this.signInButton = page.locator("[value='Login']");
-    this.emailField = page.locator('#userEmail');
-    this.passwordField = page.locator('#userPassword');
+    this.signInbutton = page.locator("[value='Login']");
+    this.userName = page.locator('#userEmail');
+    this.password = page.locator('#userPassword');
   }
-  async viewLoginPage() {
-    await this.page.goto('https://rahulshettyacademy.com/client/');
+
+  async goTo() {
+    await this.page.goto('https://rahulshettyacademy.com/client');
   }
-  async validLogin(userName, password) {
-    await this.emailField.fill(userName);
-    await this.passwordField.fill(password);
-    await this.signInButton.click();
+
+  async validLogin(username, password) {
+    await this.userName.fill(username);
+    await this.password.fill(password);
+    await this.signInbutton.click();
+    await this.page.waitForNavigation();
   }
 }
 module.exports = { LoginPage };
