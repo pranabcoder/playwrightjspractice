@@ -26,7 +26,7 @@ module.exports = defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on',
-    browserName: 'chromium',
+    browserName: 'firefox',
     headless: false,
     screenshot: 'on',
   },
@@ -34,31 +34,21 @@ module.exports = defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chromiumExecution',
-      use: {
-        trace: 'on',
-        browserName: 'chromium',
-        headless: false,
-        screenshot: 'on',
-        viewport: { width: 1500, height: 720 },
-        ignoreHTTPSErrors: true,
-        permissions: ['geolocation'],
-        video: 'retain-on-failure',
-      },
+      name: 'firefox',
+      use: { ...devices['Desktop Chrome'] },
     },
+    /*
     {
-      name: 'firefoxExecution',
-      use: {
-        trace: 'on',
-        browserName: 'firefox',
-        headless: false,
-        screenshot: 'on',
-      },
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'] },
     },
+    */
+    /*
     {
       name: 'webkit',
-      use: { ...devices['iPhone SE'] },
+      use: { ...devices['Desktop Safari'] },
     },
+    */
     /* Test against mobile viewports. */
     // {
     //   name: 'Mobile Chrome',
