@@ -14,7 +14,8 @@ class LoginPage {
     await this.userName.fill(username);
     await this.password.fill(password);
     await this.signInbutton.click();
-    await this.page.waitForNavigation();
+    // await this.page.waitForNavigation();
+    await this.page.waitForTimeout(5000);
   }
 }
 module.exports = { LoginPage };
